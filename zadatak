@@ -1,0 +1,79 @@
+IZRADA SEMINARSKOG RADA
+
+PyFloraPosude aplikacija
+Seminarski se rad sastoji od izrade GUI aplikacije za praćenje stanja ukrasnih i/ili začinskih
+biljaka koje su posađene u posude s integriranim senzorima za mjerenje:
+- vlažnosti zemlje
+- pH vrijednosti i saliniteta zemlje
+- razine svjetla koje dopire do biljke.
+Posude sa senzora u aplikaciju šalju mjerenja preko integrirane Bluetooth veze.
+Osim navedenih podataka o kvaliteti zemlje u posudi ili vrtu, potrebno je voditi računa o
+temperaturi zraka u prostoriji ili na otvorenom (terasa ili mali vrt).
+Vrijednosti očitane sa svih senzora, simulirajte tako što ćete ih generirati u zasebnoj Python
+skripti koja će se pokretati svaki puta kada korisnik pritisne gumb „Sync“ (više detalja u primjeru
+sučelja aplikacije).
+Dodatna vrijednost koju treba čuvati je temperatura zraka, koju ćete preuzeti s Meteo stanice
+u Algebrinom kampusu (Zagreb, Črnomerec) preko Web API usluge. Ukoliko Web API usluga
+na Meteo stanici iz bilo kojeg razloga bude nedostupna, osigurajte zamjensku opciju
+generiranjem ovih podataka unutar spomenute skripte.
+
+Korištenje PyFloraPosude aplikacije
+Za korištenje aplikacije, korisnik se mora prijaviti u aplikaciju. Aplikacija nije dostupna
+anonimnim korisnicima. Nakon uspješne prijave, korisnik ima prikaz statusa svih PyPosuda s
+pripadajućim biljkama.
+Korisnik može dodavati nove PyPosude u aplikaciju, pridruživati PyPosudama biljke iz
+integrirane baze biljaka. Svi objekti aplikacije trebaju imati mogućnost CRUD operacija
+(Create, Read, Update, Delete).
+Aplikacija tijekom prvog pokretanja ima podatke o korisniku (ime, prezime, korisničko ime i
+lozinku), inicijalnu bazu podataka o biljkama te jednu PyPosudu (posudu za cvijeće s
+integriranim senzorima).
+
+Funkcionalnosti PyFloraPosude aplikacije
+1. Prijava u aplikaciju. Neka aplikacija ima jednog, predefiniranog korisnika koji može
+uređivati svoje korisničke podatke. Vodite računa o obveznim poljima, kao i o skrivanju
+prikaza podataka u nekim poljima tijekom unosa. Tek nakon uspješne prijave, korisnik
+može pristupiti ostalim funkcionalnostima aplikacije.
+2. Ažuriranje podataka sa senzora. Ovisno o očitanim podacima, pokreću se aktivnosti.
+Ako je vlažnost zemljišta niska, pokreće se aktivnost zalijevanja i sl.
+
+3. Evidencija biljaka. Aplikacija treba imati bazu podataka o biljkama (što više to bolje, ali
+10 biljaka bi bilo dovoljno za potrebe izrade seminarskog rada).
+a. Podaci koje treba čuvati o biljci su ():
+i. identifikacijski broj
+ii. naziv
+iii. fotografija
+njega (ovi podaci se koriste za usporedbu s mjerenjima dobivenih sa
+senzora te se osnovom njih pokreću željene akcije):
+1. vlažnost tla – potrebno zalijevanje jednom
+dnevno/tjedno/mjesečno ...
+2. tamnija ili svjetlija mjesta
+toplija ili hladnija mjesta
+3. preporuka za dodavanje supstrata
+
+b. Evidencija biljaka može se:
+i. dopunjavati podacima o novim biljkama
+ii. ažurirati mijenjanjem podataka o postojećim biljkama
+iii. ažurirati brisanjem podataka o postojećim biljkama
+
+4. Evidencija PyFloraPosuda. Aplikacija treba imati podatke o svim posudama koje su
+dodane u aplikaciju, kao i o posađenoj biljci u toj posudi.
+a. Podaci koje treba čuvati o posudi su:
+i. identifikacijski broj
+ii. naziv – najbolje naziv lokacije. Primjer: „Kuhinja – polica pored prozora.“
+iii. posađena biljka. Ako ovog podatka nema, onda se posuda smatra
+praznom i senzori NE šalju podatke, nego posuda ima status „PRAZNA
+posuda“.
+
+b. Dohvat podataka sa senzora u posudama.
+c. Lista svih zauzetih posuda. Postoji gumb za proširivanje prikaza na posude koje
+su slobodne. Klikom na neku posudu otvara se ekran s detaljima o posudi.
+d. Prikaz detalja o svakoj posudi. Ovaj ekran, osim detalja o posudi, ima i grafički
+prikaz mjerenja dobivenih podataka sa senzora. Prikaz podataka treba biti
+moguć u minimalno tri oblika (line chart, pie chart, histogram).
+e. Promjena statusa posude:
+i. ukoliko se posuda pokvarila, korisnik treba moći posudu izbrisati iz
+sustava
+ii. ukoliko se želi promijeniti biljka, korisnik može „isprazniti“ posudu i ako
+želi dodati novu biljku ili jednostavno ostaviti posudu praznom.
+5. Baza podataka u koju će biti pohranjeni svi podaci. SQLite je sasvim dovoljan za ovaj
+tip aplikacije, ali ako želite možete koristiti i neku drugu bazu podataka.
